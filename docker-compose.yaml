@@ -1,34 +1,27 @@
 version: '3.8'
 
 services:
-  mongo-enyata-db:
-    image: mongo
-    container_name: mongo-enyata-db
+  enyata-db:
+    container_name: enyata-db
+    image: postgres:15-alpine
     restart: always
-    ports:
-      - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: user
-      MONGO_INITDB_ROOT_PASSWORD: password
-      MONGO_INITDB_DATABASE: enyata
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: enyata-db
+    ports:
+      - '5432:5432'
     volumes:
-      - mongo-enyata-db:/var/lib/mongo
+      - enyata-db:/var/lib/postgresql/data
 
-  mongo-express-enyata-db:
-    image: mongo-express
-    container_name: mongo-express-enyata-db
+  enyata-adminer:
+    container_name: enyata-adminer
+    image: adminer
     restart: always
     ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: user
-      ME_CONFIG_MONGODB_ADMINPASSWORD: password
-      ME_CONFIG_MONGODB_URL: mongodb://user:password@mongo-enyata-db:27017/
+      - 8080:8080
     depends_on:
-      - mongo-enyata-db
-
-# networks:
-#   mongo-enyata:
+      - enyata-db
 
 volumes:
-  mongo-enyata-db:
+  enyata-db:
