@@ -5,3 +5,4 @@ const router = express.Router()
 export default router
 
 router.post('/auth/signup', AuthController.signup)
+router.post('/auth/login', AuthController.login)

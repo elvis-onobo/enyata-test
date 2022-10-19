@@ -7,4 +7,9 @@ export default class AuthController {
   const data = await AuthService.signup(req.body)
   return successHandler('Signup Successful', 200, data)(req, res)
  }
+
+ public static async login(req: Request, res: Response): Promise<Response> {
+  const data = await AuthService.login(req.body)
+  return successHandler('Login Successful', 200, data)(req, res)
+ }
 }
