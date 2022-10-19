@@ -12,17 +12,15 @@ export default class OrderController {
   return successHandler('Order placed successfully', 200, data)(req, res)
  }
 
- //  public static async fetchOrders(req: Request, res: Response) {
- //     await filterOrderValidator.validateAsync(req.query)
- //     const { from, to, order, page, perPage } = req.query
- //   const data = await OrderService.fetchOrders(req.user.uuid)
- //   return successHandler('Order fetched successfully', 200, data)(req, res)
- //  }
-
  public static async fetchOrders(req: Request, res: Response) {
+  const data = await OrderService.fetchOrders(req.user.uuid)
+  return successHandler('Order fetched successfully', 200, data)(req, res)
+ }
+
+ public static async filterOrders(req: Request, res: Response) {
   await filterOrderValidator.validateAsync(req.query)
   const { minPrice, maxPrice, order, page, perPage } = req.query
-  const data = await OrderService.fetchOrders(
+  const data = await OrderService.filterOrders(
    req.user.uuid,
    minPrice as unknown as number,
    maxPrice as unknown as number,
@@ -30,6 +28,6 @@ export default class OrderController {
    page as unknown as number,
    perPage as unknown as number
   )
-  return successHandler('Order fetched successfully', 200, data)(req, res)
+  return successHandler('Order filtered successfully', 200, data)(req, res)
  }
 }

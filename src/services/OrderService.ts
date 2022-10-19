@@ -22,6 +22,16 @@ export default class OrderService {
  }
 
  /**
+  * Fetch all orders for a user
+  * @param userUuid
+  * @returns
+  */
+ public static async fetchOrders(userUuid: string) {
+  const orders = await DB.fetchAll('orders', 'user_uuid', userUuid)
+  return orders
+ }
+
+ /**
   * Fetches all orders for a user and filters therm when required
   * @param userUuid
   * @param from
@@ -31,7 +41,7 @@ export default class OrderService {
   * @param perPage
   * @returns
   */
- public static async fetchOrders(
+ public static async filterOrders(
   userUuid: string,
   minPrice: number,
   maxPrice: number,
