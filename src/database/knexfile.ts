@@ -4,7 +4,6 @@ import type { Knex } from 'knex'
 // attachPaginate()
 
 dotenv.config({ path: '../../.env' })
-console.log('>>>>> ', process.env.DATABASE_NAME)
 
 // Update with your config settings.
 const config: { [key: string]: Knex.Config } = {
