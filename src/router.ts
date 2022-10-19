@@ -10,3 +10,4 @@ export default router
 router.post('/auth/signup', AuthController.signup)
 router.post('/auth/login', AuthController.login)
 router.post('/orders/create', authMiddleware, OrderController.createOrder)
+router.get('/orders/fetch', authMiddleware, OrderController.fetchOrders)

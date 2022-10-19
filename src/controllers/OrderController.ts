@@ -11,4 +11,9 @@ export default class OrderController {
   const data = await OrderService.createOrder(user.uuid, productUuid)
   return successHandler('Order placed successfully', 200, data)(req, res)
  }
+
+ public static async fetchOrders(req: Request, res: Response){
+    const data = await OrderService.fetchOrders(req.user.uuid)
+  return successHandler('Order fetched successfully', 200, data)(req, res)
+ }
 }
