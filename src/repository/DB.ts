@@ -40,6 +40,7 @@ export default class DB {
  ) {
   return await db(table)
    .where(row, value)
+   .leftJoin('products', 'orders.product_uuid', 'products.uuid')
    .paginate({ perPage, currentPage: page, isLengthAware: true })
  }
 }
