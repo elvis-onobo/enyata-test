@@ -2,7 +2,7 @@ import Joi from 'joi'
 import { filterOrderEnum } from '../enums/orderEnum'
 
 export const createOrderValidator = Joi.object({
- product: Joi.string().min(10).required(),
+ products: Joi.array().items(Joi.string()),
 })
 
 export const filterOrderValidator = Joi.object({
