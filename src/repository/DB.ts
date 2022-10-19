@@ -21,4 +21,25 @@ export default class DB {
  public static async fetchOneBy(table: string, row: string, value: any) {
   return await db(table).where(row, value).first()
  }
+
+ /**
+  * Fetches all data that match the value. Default pagination is 5
+  * @param table
+  * @param row
+  * @param value
+  * @param page
+  * @param perPage
+  * @returns
+  */
+ public static async fetchAll(
+  table: string,
+  row: string,
+  value: any,
+  page: number = 1,
+  perPage: number = 5
+ ) {
+  return await db(table)
+   .where(row, value)
+   .paginate({ perPage, currentPage: page, isLengthAware: true })
+ }
 }

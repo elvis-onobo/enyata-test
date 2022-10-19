@@ -1048,6 +1048,11 @@ kareem@2.4.1:
   resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.4.1.tgz#7d81ec518204a48c1cb16554af126806c3cd82b0"
   integrity sha512-aJ9opVoXroQUPfovYP5kaj2lM7Jn02Gw13bL0lg9v0V7SaUc0qavPs0Eue7d2DcC3NjqI6QAUElXNsuZSeM+EA==
 
+knex-paginate@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/knex-paginate/-/knex-paginate-3.0.1.tgz#17f857272a8940e5216efa4980741bfc0283e103"
+  integrity sha512-Txsej6V8Mf293R2QMEX8BW3MKb087VzY/6BkI/TY96dVH3O1q4vVtO/aTlJE+7r0EV9k/i5Kr8H/+30zX5CTQw==
+
 knex@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/knex/-/knex-2.3.0.tgz#87fa2a9553d7cafb125d7a0645256fbe29ef5967"
