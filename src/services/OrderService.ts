@@ -2,6 +2,7 @@ import { uuid } from 'uuidv4'
 import DB from '../repository/DB'
 import { BadRequest } from 'http-errors'
 import db from '../database/db'
+import { createOrderInterface } from '../interfaces/orderInterface'
 
 export default class OrderService {
  /**
@@ -10,14 +11,24 @@ export default class OrderService {
   * @param productUuid
   * @returns
   */
- public static async createOrder(userUuid: string, productUuid: string): Promise<Boolean> {
-  const productExists = await DB.fetchOneBy('products', 'uuid', productUuid)
+ public static async createOrder(
+  userUuid: string,
+  data: { [products: string]: Array<string> }
+ ): Promise<Boolean> {
+  const orderCode = uuid()
+  const productExists = await db.select('*').from('products').whereIn('uuid', data.products)
 
-  if (productExists == null) {
-   throw new BadRequest('Invalid product')
-  }
+  let order: Array<createOrderInterface> = []
+  productExists.map((product) => {
+   order.push({
+    uuid: uuid(),
+    user_uuid: userUuid,
+    product_uuid: product.uuid,
+    order_code: orderCode,
+   })
+  })
 
-  await DB.create('orders', { uuid: uuid(), user_uuid: userUuid, product_uuid: productUuid })
+  await DB.create('orders', order)
   return true
  }
 

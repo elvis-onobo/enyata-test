@@ -6,6 +6,7 @@ export async function up(knex: Knex): Promise<void> {
   table.uuid('uuid').notNullable().unique()
   table.uuid('user_uuid').references('uuid').inTable('users').notNullable()
   table.uuid('product_uuid').references('uuid').inTable('products').notNullable()
+  table.uuid('order_code').notNullable()
   table.timestamps(true, true)
  })
 }
