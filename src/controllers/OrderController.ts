@@ -7,8 +7,8 @@ export default class OrderController {
  public static async createOrder(req: Request, res: Response) {
   await createOrderValidator.validateAsync(req.query)
   const { user } = req
-  const products = req.body
-  const data = await OrderService.createOrder(user.uuid, products)
+  const productUuid = req.query.product as string
+  const data = await OrderService.createOrder(user.uuid, productUuid)
   return successHandler('Order placed successfully', 200, data)(req, res)
  }
 
