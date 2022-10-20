@@ -37,8 +37,15 @@ export default class OrderService {
   * @param userUuid
   * @returns
   */
- public static async fetchOrders(userUuid: string) {
-  const orders = await DB.fetchAll('orders', 'user_uuid', userUuid)
+ public static async fetchOrders(userUuid: string, page:number = 1,perPage: number = 5){
+  const orders = await db
+   .select('*')
+   .from('orders')
+   .where('user_uuid', userUuid)
+   .leftJoin('products', 'orders.product_uuid', 'products.uuid')
+   .groupBy('orders.order_code', 'orders.id', 'products.id')
+   .paginate({ perPage, currentPage: page, isLengthAware: true })
+
   return orders
  }
 
