@@ -3,4 +3,6 @@ export interface createOrderInterface {
  user_uuid: string
  product_uuid: string
  order_code: string
+ product_name: string
+ product_price: string
 }

@@ -25,6 +25,8 @@ export default class OrderService {
     user_uuid: userUuid,
     product_uuid: product.uuid,
     order_code: orderCode,
+    product_price: product.product_price,
+    product_name: product.product_name,
    })
   })
 
@@ -37,13 +39,14 @@ export default class OrderService {
   * @param userUuid
   * @returns
   */
- public static async fetchOrders(userUuid: string, page:number = 1,perPage: number = 5){
+ public static async fetchOrders(userUuid: string, page: number = 1, perPage: number = 5) {
+  // orders should be immutable, therefore save the price and order name
   const orders = await db
    .select('*')
    .from('orders')
    .where('user_uuid', userUuid)
-   .leftJoin('products', 'orders.product_uuid', 'products.uuid')
-   .groupBy('orders.order_code', 'orders.id', 'products.id')
+   //    .leftJoin('products', 'orders.product_uuid', 'products.uuid')
+   .groupBy('orders.order_code', 'orders.id')
    .paginate({ perPage, currentPage: page, isLengthAware: true })
 
   return orders
