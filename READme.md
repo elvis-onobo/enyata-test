@@ -40,3 +40,9 @@ Also, I have created dummy product data that you can use in testing rather than 
 And lastly, run the devlopement server:
 
 `yarn dev`
+
+## Tests
+
+To run the tests
+
+`yarn test`
