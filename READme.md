@@ -4,7 +4,7 @@ Enyata e-commerce test project setup guide
 
 ## Last Minute Revelation
 
-I realized that I may have thought about the app in a very linear way.
+I realized in the last minutes that I may have thought about the app in a very linear way.
 
 One thing I would have done better is to enable the API to receive multiple products under one order instead of just one product for one order. This way, I would the fetch orders and have all the products belonging to that order so that the client can display all the products in an order.
 
