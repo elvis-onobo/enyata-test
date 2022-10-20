@@ -5,6 +5,11 @@ export const createOrderValidator = Joi.object({
  products: Joi.array().items(Joi.string()),
 })
 
+export const fetchOrderValidator = Joi.object({
+ page: Joi.number().optional(),
+ perPage: Joi.number().optional(),
+})
+
 export const filterOrderValidator = Joi.object({
  minPrice: Joi.number().min(100).required(),
  maxPrice: Joi.number().min(100).required(),
